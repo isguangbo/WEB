@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排它思想案例</title>
+    <script src="jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <style>
+        .container {
+            margin: 100px auto;
+            border: 1px solid red;
+            width: 500px;
+            height: 500px;
+        }
+
+        .left {
+            float: left;
+            width: 100px;
+            height: 500px;
+            background-color: #ccc;
+        }
+
+        .right {
+            float: right;
+            width: 400px;
+            height: 500px;
+            background-color: grey;
+        }
+
+        .left li {
+            box-sizing: border-box;
+            width: 100%;
+            height: 62.5px;
+            text-align: center;
+            line-height: 62.5px;
+            border: 1px solid red;
+        }
+
+        .right a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 48px;
+            transform: translate(0, 50%);
+            overflow: hidden;
+        }
+    </style>
+</head>
+<script>
+    $(function () {
+        $('.left li').mouseover(function () {
+            // 当前元素的索引号   
+            let index = $(this).index();
+            // console.log($(this).index());
+            $('.right a').eq(index).show();
+            $('.right a').eq(index).siblings().hide();
+
+        })
+    })
+</script>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+            </ul>
+        </div>
+        <div class="right">
+            <a href="javascript:;">
+                <div class="img current">1</div>
+            </a>
+            <a href="javascript:;">
+                <div class="img">2</div>
+            </a>
+            <a href="javascript:;">
+                <div class="img">3</div>
+            </a>
+            <a href="javascript:;">
+                <div class="img">4</div>
+            </a>
+            <a href="javascript:;">
+                <div class="img">5</div>
+            </a>
+            <a href="javascript:;">
+                <div class="img">6</div>
+            </a>
+            <a href="javascript:;">
+                <div class="img">7</div>
+            </a>
+            <a href="javascript:;">
+                <div class="img">8</div>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
