@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.3.min.js"></script>
+    <style>
+        * {
+            border: 1px dotted grey;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="nav">
+        <p>0</p>
+        <div class="one">
+            <p>1</p>
+        </div>
+        <div class="two">
+            <p>2</p>
+        </div>
+    </div>
+    <div class="main">
+        <div id="name">来回的浮云</div>
+        <div class="name">一拳撂倒丈母娘</div>
+        <div>纯纯的野狗</div>
+        <p>上面都是神马牛马名字</p>
+        <ul>
+            <li class="one">卜一</li>
+            <li>卜二</li>
+        </ul>
+        <ol>
+            <li>龙</li>
+            <li>凤</li>
+            <div>
+                <li>野鸡</li>
+            </div>
+
+        </ol>
+    </div>
+    <div class="other">
+        <ul>
+            <li>hhhhhhhhh</li>
+            <li>hhhhhhhhh</li>
+            <li class="current">hhhhhhhhh</li>
+            <li>hhhhhhhhh</li>
+            <li>hhhhhhhhh</li>
+        </ul>
+        <ol>
+            <li>哈哈哈哈哈哈哈哈</li>
+            <li>哈哈哈哈哈哈哈哈</li>
+            <li class="current">哈哈哈哈哈哈哈哈</li>
+            <li>哈哈哈哈哈哈哈哈</li>
+            <li>哈哈哈哈哈哈哈哈</li>
+        </ol>
+    </div>
+    <div class="others">
+        <ul>
+            <li>hhhhhhhhh</li>
+            <li>hhhhhhhhh</li>
+            <li class="current">hhhhhhhhh</li>
+            <li>hhhhhhhhh</li>
+            <li>hhhhhhhhh</li>
+        </ul>
+        <ol>
+            <li>哈哈哈哈哈哈哈哈</li>
+            <li>哈哈哈哈哈哈哈哈</li>
+            <li class="current">哈哈哈哈哈哈哈哈</li>
+            <li>哈哈哈哈哈哈哈哈</li>
+            <li>哈哈哈哈哈哈哈哈</li>
+        </ol>
+    </div>
+</body>
+<script>
+    // 查找父级
+    console.log($('.one').parent());
+    // 查找最近一级，亲儿子
+    console.log($('.nav').children('p'));
+    // 查找所有的子级
+    console.log($('.nav').find('p'));
+    // 子代选择器
+    $('.main ol>li').css('backgroundColor', 'yellow');
+    // 后代选择器
+    $('.main ol li').css('border', '1px solid red');
+    // 查找兄弟节点 不包括自身
+    $('.other ul li.current').siblings('li').css('color', 'tomato');
+    // 查找当前元素之后所有的同辈元素  不包括自身
+    $('.other ol li.current').nextAll('li').css('color', 'red');
+    // 查找当前元素之前所有的同辈元素   不包括自身
+    $('.others ul li.current').prevAll('li').css('color', 'purple');
+    // 检查当前元素是否含有某个特定的类，如果有返回true  推荐这种写法
+    console.log($('.others ol li').eq(2).hasClass('current'));
+    // 相当于$('ele:eq(2)'), index从0开始
+    $('.others ol li:eq(2)').css('color', 'blue');
+    let index = 3;
+    $('.others ol li').eq(index).css('color', 'skyblue');
+    index++;
+    // 这种写起来就比较麻烦，因为index在引号里面不能直接写，而且外面双引号里面必须用双引号，单引号也是，否则没效果
+    $('.others ol li:eq(' + index + ')').css('color', 'red');
+</script>
+
+</html>

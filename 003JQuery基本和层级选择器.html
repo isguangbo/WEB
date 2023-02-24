@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.3.min.js"></script>
+</head>
+
+<body>
+    <div id="name">来回的浮云</div>
+    <div class="name">一拳撂倒丈母娘</div>
+    <div>纯纯的野狗</div>
+    <p>上面都是神马牛马名字</p>
+    <ul>
+        <li class="one">卜一</li>
+        <li>卜二</li>
+    </ul>
+    <ol>
+        <li>龙</li>
+        <li>凤</li>
+        <div>
+            <li>野鸡</li>
+        </div>
+    </ol>
+
+
+</body>
+<script>
+    // ID选择器
+    $('#name').css('color', 'red');
+    // 全选择器
+    $('*').css('border', '1px dotted grey');
+    // 类选择器
+    $('.name').css('color', 'blue');
+    // 标签选择器
+    $('p').css('color', 'pink');
+    // 交集选择器
+    $('li.one').css('color', 'skyblue');
+    // 并集选择器
+    $('div:eq(2), ul>li:odd').css('color', 'purple');
+
+</script>
+
+</html>

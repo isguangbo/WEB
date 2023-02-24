@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.3.min.js"></script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: darksalmon;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // $是jQuery的别名，可以写$也可以写jquery
+        // 入口函数两种写法
+        // 1.
+        $(function () {
+            $('div').hide();
+        })
+        // 2.
+        $(document).ready(function () {
+            console.log("-----------");
+        })
+    </script>
+</body>
+
+</html>
