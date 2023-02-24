@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.3.min.js"></script>
+</head>
+
+<body>
+    <button>click</button> <button>click</button> <button>click</button> <button>click</button> <button>click</button>
+    <button>click</button> <button>click</button> <button>click</button>
+</body>
+<script>
+    // 隐式迭代给所有按钮都添加了click方法
+    $('button').click(function () {
+        // 点击的按钮背景设为灰色
+        $(this).css('background', 'grey');
+        // 其他兄弟按钮颜色去除  隐式迭代
+        $(this).siblings('button').css('background', '');
+    })
+</script>
+
+</html>
