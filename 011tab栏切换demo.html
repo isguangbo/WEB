@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tab栏切换案例</title>
+    <script src="jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .container {
+            box-sizing: border-box;
+            margin: 100px auto;
+            width: 800px;
+            height: 500px;
+        }
+
+        .tab {
+            background-color: #ccc;
+            width: 800px;
+            height: 50px;
+        }
+
+        .tab ul li {
+            float: left;
+            width: 160px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 14px;
+        }
+
+        .current {
+            background-color: rgb(226, 73, 73);
+            color: white;
+        }
+
+        .tab-con {
+            background-color: #ddd;
+            box-sizing: border-box;
+            width: 800px;
+            height: 450px;
+            overflow: hidden;
+        }
+
+        .tab-con div {
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<script>
+    $(function () {
+        $('.tab ul li').click(function () {
+            $(this).addClass('current').parent('a').siblings('a').children('li').removeClass('current');
+            let index = $(this).parent('a').index();
+            $('.tab-con div').eq(index).show().siblings('div').hide()
+        })
+    })
+</script>
+
+<body>
+    <div class="container">
+        <div class="tab">
+            <ul>
+                <a href="javascript:;">
+                    <li class="current"> 商品介绍</li>
+                </a>
+                <a href="javascript:;">
+                    <li> 规格预包装</li>
+                </a>
+                <a href="javascript:;">
+                    <li> 售后保障</li>
+                </a>
+                <a href="javascript:;">
+                    <li> 商品评价</li>
+                </a>
+                <a href="javascript:;">
+                    <li> 本店好评商品</li>
+                </a>
+            </ul>
+        </div>
+        <div class="tab-con">
+            <div>商品介绍</div>
+            <div>规格预包装</div>
+            <div>售后保障</div>
+            <div>商品评价</div>
+            <div>本店好评商品</div>
+        </div>
+    </div>
+</body>
+
+</html>

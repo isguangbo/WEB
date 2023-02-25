@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <script src="jquery-3.6.3.min.js"></script>
+    <style>
+        button {
+            margin: 10px;
+        }
+
+        .one,
+        .two,
+        .three,
+        .four,
+        .five {
+            padding: 10px;
+            float: left;
+        }
+
+        .one div,
+        .two div,
+        .three div,
+        .four div,
+        .five div {
+            width: 200px;
+            height: 200px;
+            background-color: violet;
+        }
+    </style>
+</head>
+<script>
+    $(function () {
+        // 基本效果，显示隐藏
+        $('.one button').eq(0).click(function () {
+            // 显示效果
+            $('.one div').show(1000)
+        });
+        $('.one button').eq(1).click(function () {
+            // 隐藏效果
+            $('.one div').hide(1000)
+        });
+        // 显示隐藏切换效果
+        $('.one button').eq(2).click(function () {
+            $('.one div').toggle(1000)
+        });
+        // 滑动效果
+        $('.two button').eq(0).click(function () {
+            // 下滑效果
+            $('.two div').slideDown(1000)
+        });
+        // 上滑效果
+        $('.two button').eq(1).click(function () {
+            $('.two div').slideUp(1000)
+        });
+        // 滑动切换效果
+        $('.two button').eq(2).click(function () {
+            $('.two div').slideToggle(1000)
+        });
+        // 淡入淡出效果
+        $('.three button').eq(0).click(function () {
+            // 下滑效果
+            $('.three div').slideDown(1000)
+        });
+        // 上滑效果
+        $('.three button').eq(1).click(function () {
+            $('.three div').slideUp(1000)
+        });
+        // 滑动切换效果
+        $('.three button').eq(2).click(function () {
+            $('.three div').slideToggle(1000)
+        });
+        // 事件切换
+        // 鼠标放上面下滑显示div
+        /* $('.four button').mouseover(function () {
+            $(this).siblings('div').slideDown(1000)
+        })
+        // 鼠标离开上滑隐藏div
+        $('.four button').mouseout(function () {
+            $(this).siblings('div').slideUp(1000)
+        })
+        // 事件切换
+        // 直接在hover里面写两个函数，一个显示一个隐藏同样可以实现切换效果
+        // 鼠标经过和离开的复合写法
+        $('.four button').hover(function () {
+            $(this).siblings('div').slideDown(1000);
+        }, function () {
+            $(this).siblings('div').slideUp(1000);
+        }) */
+        // 只写一个函数直接切换效果
+        $('.four button').hover(function () {
+            $(this).siblings('div').slideToggle(1000);
+        })
+        // 细心的我当然发现了上面还是有个小bug的，如果一直点击或者鼠标经过离开，动画效果是会等全部执行完成才会停止
+        // 怎么解决这个bug呢？
+        // 下面就是神奇的动画队列及其停止排队的方法
+
+        // stop()方法用于停止动画或者效果
+        // stop写到动画或者效果的前面，相当于结束上一次动画
+        $('.five button').hover(function () {
+            $(this).siblings('div').stop().slideToggle(1000);
+        })
+    })
+</script>
+
+<body>
+    <div class="container">
+        <div class="one">
+            <button>显示</button>
+            <button>隐藏</button>
+            <button>切换</button>
+            <div></div>
+        </div>
+        <div class="two">
+            <button>下滑</button>
+            <button>上滑</button>
+            <button>切换</button>
+            <div></div>
+        </div>
+        <div class="three">
+            <button>下滑</button>
+            <button>上滑</button>
+            <button>切换</button>
+            <div></div>
+        </div>
+        <div class="four">
+            <button>菜单</button>
+            <div style="display: none;"></div>
+        </div>
+        <div class="five">
+            <button>神奇的按钮</button>
+            <div style="display: none;"></div>
+        </div>
+    </div>
+</body>
+
+</html>

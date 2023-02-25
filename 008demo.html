@@ -39,7 +39,7 @@
             text-align: center;
             line-height: 62.5px;
             border: 1px solid red;
-            cursor:e-resize;
+            cursor: e-resize;
         }
 
         .right div {
@@ -57,8 +57,11 @@
             // 当前元素的索引号   
             let index = $(this).index();
             // console.log($(this).index());
-            $('.right a').eq(index).show();
-            $('.right a').eq(index).siblings().hide();
+            // $('.right a').eq(index).show();
+            // $('.right a').eq(index).siblings().hide();
+            // 合并为一句   链式编程
+            $('.right a').eq(index).show().siblings().hide();
+
 
         })
     })

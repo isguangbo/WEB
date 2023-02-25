@@ -17,9 +17,12 @@
     // 隐式迭代给所有按钮都添加了click方法
     $('button').click(function () {
         // 点击的按钮背景设为灰色
-        $(this).css('background', 'grey');
+        // $(this).css('background', 'grey');
         // 其他兄弟按钮颜色去除  隐式迭代
-        $(this).siblings('button').css('background', '');
+        // $(this).siblings('button').css('background', '');
+        // 链式编程
+        $(this).css('color', 'red').siblings('button').css('color', '');
+
     })
 </script>
 
