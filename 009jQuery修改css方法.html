@@ -18,18 +18,18 @@
 <script>
     $(function () {
         // 参数只写属性名，则返回属性值
-        console.log($('div').css('width')); //  200px
+        console.log($("div").css("width")); //  200px
         // 参数是属性名，属性值，逗号分隔，是设置一组样式，属性必须加引号
         // 复合属性必须采用驼峰命名法
-        $('div').css('backgroundColor', 'red')
+        $("div").css("backgroundColor", "red")
         // 值如果是数字可以不用跟单位和引号
-        $('div').css('width', 300)
+        $("div").css("width", 300)
         // 参数可以是对象形式，方便设置多组样式。属性名和属性值用冒号隔开，属性可以不用加号引号
-        $('div').css({
+        $("div").css({
             width: 300,
             height: 300,
             // 如果值不是数字，需要加引号
-            margin: 'auto'
+            margin: "auto"
         })
     })
 </script>

@@ -53,14 +53,14 @@
 </head>
 <script>
     $(function () {
-        $('.left li').mouseover(function () {
+        $(".left li").mouseover(function () {
             // 当前元素的索引号   
             let index = $(this).index();
             // console.log($(this).index());
-            // $('.right a').eq(index).show();
-            // $('.right a').eq(index).siblings().hide();
+            // $(".right a").eq(index).show();
+            // $(".right a").eq(index).siblings().hide();
             // 合并为一句   链式编程
-            $('.right a').eq(index).show().siblings().hide();
+            $(".right a").eq(index).show().siblings().hide();
 
 
         })

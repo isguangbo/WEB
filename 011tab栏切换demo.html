@@ -53,10 +53,10 @@
 </head>
 <script>
     $(function () {
-        $('.tab ul li').click(function () {
-            $(this).addClass('current').parent('a').siblings('a').children('li').removeClass('current');
-            let index = $(this).parent('a').index();
-            $('.tab-con div').eq(index).show().siblings('div').hide()
+        $(".tab ul li").click(function () {
+            $(this).addClass("current").parent("a").siblings("a").children("li").removeClass("current");
+            let index = $(this).parent("a").index();
+            $(".tab-con div").eq(index).show().siblings("div").hide()
         })
     })
 </script>

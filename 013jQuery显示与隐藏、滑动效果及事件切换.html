@@ -74,68 +74,68 @@
 <script>
     $(function () {
         // 基本效果，显示隐藏
-        $('.one button').eq(0).click(function () {
+        $(".one button").eq(0).click(function () {
             // 显示效果
-            $('.one div').show(1000)
+            $(".one div").show(1000)
         });
-        $('.one button').eq(1).click(function () {
+        $(".one button").eq(1).click(function () {
             // 隐藏效果
-            $('.one div').hide(1000)
+            $(".one div").hide(1000)
         });
         // 显示隐藏切换效果
-        $('.one button').eq(2).click(function () {
-            $('.one div').toggle(1000)
+        $(".one button").eq(2).click(function () {
+            $(".one div").toggle(1000)
         });
         // 滑动效果
-        $('.two button').eq(0).click(function () {
+        $(".two button").eq(0).click(function () {
             // 下滑效果
-            $('.two div').slideDown(1000)
+            $(".two div").slideDown(1000)
         });
         // 上滑效果
-        $('.two button').eq(1).click(function () {
-            $('.two div').slideUp(1000)
+        $(".two button").eq(1).click(function () {
+            $(".two div").slideUp(1000)
         });
         // 滑动切换效果
-        $('.two button').eq(2).click(function () {
-            $('.two div').slideToggle(1000)
+        $(".two button").eq(2).click(function () {
+            $(".two div").slideToggle(1000)
         });
         // 淡入淡出效果
-        $('.three button').eq(0).click(function () {
+        $(".three button").eq(0).click(function () {
             // 淡入效果
-            $('.three div').fadeIn(1000)
+            $(".three div").fadeIn(1000)
         });
         // 淡出效果
-        $('.three button').eq(1).click(function () {
-            $('.three div').fadeOut(1000)
+        $(".three button").eq(1).click(function () {
+            $(".three div").fadeOut(1000)
         });
         // 淡入淡出效果切换
-        $('.three button').eq(2).click(function () {
-            $('.three div').fadeToggle(1000)
+        $(".three button").eq(2).click(function () {
+            $(".three div").fadeToggle(1000)
         });
         // 修改透明度
-        $('.three button').eq(3).click(function () {
-            $('.three div').fadeTo(1000, .5)
+        $(".three button").eq(3).click(function () {
+            $(".three div").fadeTo(1000, .5)
         });
         // 事件切换
         // 鼠标放上面下滑显示div
-        /* $('.four button').mouseover(function () {
-            $(this).siblings('div').slideDown(1000)
+        /* $(".four button").mouseover(function () {
+            $(this).siblings("div").slideDown(1000)
         })
         // 鼠标离开上滑隐藏div
-        $('.four button').mouseout(function () {
-            $(this).siblings('div').slideUp(1000)
+        $(".four button").mouseout(function () {
+            $(this).siblings("div").slideUp(1000)
         })
         // 事件切换
         // 直接在hover里面写两个函数，一个显示一个隐藏同样可以实现切换效果
         // 鼠标经过和离开的复合写法
-        $('.four button').hover(function () {
-            $(this).siblings('div').slideDown(1000);
+        $(".four button").hover(function () {
+            $(this).siblings("div").slideDown(1000);
         }, function () {
-            $(this).siblings('div').slideUp(1000);
+            $(this).siblings("div").slideUp(1000);
         }) */
         // 只写一个函数直接切换效果
-        $('.four button').hover(function () {
-            $(this).siblings('div').slideToggle(1000);
+        $(".four button").hover(function () {
+            $(this).siblings("div").slideToggle(1000);
         })
         // 细心的我当然发现了上面还是有个小bug的，如果一直点击或者鼠标经过离开，动画效果是会等全部执行完成才会停止
         // 怎么解决这个bug呢？
@@ -143,11 +143,11 @@
 
         // stop()方法用于停止动画或者效果
         // stop写到动画或者效果的前面，相当于结束上一次动画
-        $('.five button').hover(function () {
-            $(this).siblings('div').stop().slideToggle(1000);
+        $(".five button").hover(function () {
+            $(this).siblings("div").stop().slideToggle(1000);
         })
-        $('.box div').mouseover(function () {
-            $(this).siblings('div').stop().fadeTo(300,.5);
+        $(".box div").mouseover(function () {
+            $(this).siblings("div").stop().fadeTo(300,.5);
         })
         $(".box div").mouseout(function () {
             $(this).siblings("div").stop().fadeTo(300,1)

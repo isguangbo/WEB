@@ -15,16 +15,16 @@
 </body>
 <script>
     // 1.DOM对象：用原生js获取过来的对象就是DOM对象
-    let div = document.querySelector('div');
+    let div = document.querySelector("div");
     console.log(div);
     // 2.jquery对象：用jquery方式获取过来的对象是jquery对象。 本质：通过$把DOM元素进行了包装
-    $('span');
-    console.log($('span'));
+    $("span");
+    console.log($("span"));
     // 3.jquery对象只能使用jquery方法，DOM对象只能使用原生的JavaScript实行和方法
-    div.style.display = 'none';
-    $('span').hide();
+    div.style.display = "none";
+    $("span").hide();
     // div.hide(); // div是一个DOM对象不能使用jquery里面的方法
-    // $('span').style.display = 'none';   // span是一个jquery对象不能使用原生DOM方法
+    // $("span").style.display = "none";   // span是一个jquery对象不能使用原生DOM方法
 
 </script>
 </html>
