@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <script src="jquery-3.6.3.min.js"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Document</title>
+    <style>
+        .king {
+            margin: 100px auto;
+            width: 733px;
+            height: 69px;
+            overflow: hidden;
+        }
+
+        .king ul .current {
+            width: 224px;
+        }
+
+        .king ul .current .small {
+            display: none;
+        }
+
+        .king ul .current .big {
+            display: block;
+        }
+
+        .king ul li {
+            float: left;
+            margin-right: 10px;
+            width: 69px;
+            height: 69px;
+        }
+
+        .king ul li img {
+            border-radius: 5px;
+        }
+
+        .king ul li .small {
+            width: 69px;
+            height: 69px;
+        }
+
+        .king ul li .big {
+            display: none;
+        }
+    </style>
+</head>
+<script>
+    $(function () {
+        $(".king li").mouseover(function () {
+            $(this).stop().animate({
+                width: 224,
+            }).find(".small").stop().hide().siblings(".big").stop().fadeIn();
+            $(this).siblings('li').stop().animate({
+                width: 69,
+            }).find(".big").stop().fadeOut().siblings(".small").stop().fadeIn()
+        })
+    })
+</script>
+
+<body>
+    <div class="king">
+        <ul>
+            <li class="current">
+                <a href="javascript:;">
+                    <img src="img/015/01.webp" alt="" class="small">
+                    <img src="img/015/01b.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="img/015/02.webp" alt="" class="small">
+                    <img src="img/015/02b.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="img/015/03.webp" alt="" class="small">
+                    <img src="img/015/03b.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="img/015/04.webp" alt="" class="small">
+                    <img src="img/015/04b.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="img/015/05.webp" alt="" class="small">
+                    <img src="img/015/05b.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="img/015/06.webp" alt="" class="small">
+                    <img src="img/015/06b.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="img/015/07.webp" alt="" class="small">
+                    <img src="img/015/07b.png" alt="" class="big">
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
