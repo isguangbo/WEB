@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        div {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<script>
+    $(function () {
+        $("button").click(function () {
+            // 往下往右走500px透明度变为0.3
+            // animate第一个参数为想要修改的样式属性，以对象形式传递
+            // 第二个参数速度(slow normal fast)或者动画时长的毫秒值
+            // 第三个参数用来指定切换效果
+            // 第四个参数回调函数
+            $("div").animate({
+                top: 500,
+                left: 500,
+                opacity: .3
+            }, 500)
+        })
+    })
+</script>
+
+<body>
+    <button>click</button>
+    <div></div>
+</body>
+
+</html>
