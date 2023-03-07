@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <script src="jquery-3.6.3.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .button {
+            background-color: rgb(212, 80, 77);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        input[type='number'] {
+            width: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<script>
+    $(function () {
+        // 选中操作
+        // 全选按钮选中时，下面的按钮也全部选中，包括全选按钮
+        $(".selectAll").change(function () {
+            // console.log($(this).prop("checked"));
+            $(".select,.selectAll").prop("checked", $(this).prop("checked"))
+        });
+        // 当小按钮全部选中时，全选按钮也要选中
+        $(".select").change(function () {
+            // 有几个按钮被选中了
+            // console.log($(".select:checked").length);
+            // 总共有几个商品
+            // console.log($(".select").length);
+            // 如果商品选中的数量和商品数量相等全选按钮选中
+            if ($(".select:checked").length === $(".select").length) {
+                $(".selectAll").prop("checked", true)
+                // 否则不选中
+            } else {
+                $(".selectAll").prop("checked", false)
+            }
+        });
+        // 增减商品数量
+        // 首先声明一个变量，当我们点击 + 号(add）就让这个值++，然后赋值给文本框。
+        // 只能增加本商品的数量，就是当前 + 号的兄弟文本框（text）的值。
+        // 修改表单的值是val()方法
+        // 这个变量初始值应该是这个文本框的值，在这个值的基础上++。要获取表单的值
+        $(".add").click(function () {
+            // 加号对应的该商品的数量
+            // console.log($(this).siblings("input").val());
+            let n = $(this).siblings("input").val();
+            n++;
+            // 点击加号后的值自加修改value值
+            $(this).siblings("input").val(n)
+            // 商品总计价格变化
+            console.log($(this).parent().siblings(".total").html());
+            // substr()截取字符串 里面跟两个参数，第一个参数从第几个截取  第二个参数截取多少个，不写默认到最后一个
+            let price = $(this).parent().siblings(".price").text().substr(1);
+            console.log(price);
+            $(this).parent().siblings(".total").html((price * n).toFixed(2))
+        })
+        $(".subtract").click(function () {
+            // 减号对应的该商品的数量
+            // console.log($(this).siblings("input").val());
+            let n = $(this).siblings("input").val();
+            if (n == 1) {
+                return false;
+            } else {
+                n--;
+                $(this).siblings("input").val(n)
+            }
+            // 商品总计价格变化
+            console.log($(this).parent().siblings(".total").html());
+            let price = $(this).parent().siblings(".price").text().substr(1);
+            console.log(price);
+            // toFixed(2)保留两位小数
+            $(this).parent().siblings(".total").html((price * n).toFixed(2))
+        })
+    })
+</script>
+
+<body>
+    <header>
+        <h1>购物车</h1>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th><input type="checkbox" name="" id="" class="selectAll"> 全选</th>
+                    <th>商品名称</th>
+                    <th>单价</th>
+                    <th>数量</th>
+                    <th>小计</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" name="" id="" class="select"></td>
+                    <td>商品A</td>
+                    <td class="price">￥10.00</td>
+                    <td><button class="subtract">-</button><input type="number" name="" id="" value="1"><button
+                            class="add">+</button>
+                    </td>
+                    <td class="total">10.00</td>
+                    <td>删除</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="" id="" class="select"></td>
+                    <td>商品B</td>
+                    <td class="price">￥15.80</td>
+                    <td>
+                        <button class="subtract">-</button><input type="number" name="" id="" value="1"><button
+                            class="add">+</button>
+                    </td>
+                    <td class="total">15.00</td>
+                    <td>删除</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="" id="" class="select"></td>
+                    <td>商品C</td>
+                    <td class="price">￥55.00</td>
+                    <td><button class="subtract">-</button><input type="number" name="" id="" value="1"><button
+                            class="add">+</button>
+                    </td>
+                    <td class="total">55.00</td>
+                    <td>删除</td>
+                </tr>
+                <tr>
+                    <th><input type="checkbox" name="" id="" class="selectAll"> 全选</th>
+                    <th>删除选中商品</th>
+                    <th>清理购物车</th>
+                    <th>已选择1件商品</th>
+                    <th>总价：</th>
+                    <th><button class="button">去结算</button></th>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+    </main>
+</body>
+
+</html>
