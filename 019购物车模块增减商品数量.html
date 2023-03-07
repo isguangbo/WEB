@@ -102,7 +102,17 @@
             // 加号对应的该商品的数量
             // console.log($(this).siblings("input").val());
             let n = $(this).siblings("input").val();
-            n++;
+            if (n == 199) {
+                n++;
+                // $(this).siblings("input").val(n)
+                $(this).attr("disabled", true)
+
+            } else {
+                n++;
+                $(this).siblings("input").val(n)
+                $(this).siblings(".subtract").attr("disabled", false)
+            }
+            // n++;
             // 点击加号后的值自加修改value值
             $(this).siblings("input").val(n)
             // 商品总计价格变化
@@ -111,16 +121,20 @@
             let price = $(this).parent().siblings(".price").text().substr(1);
             console.log(price);
             $(this).parent().siblings(".total").html((price * n).toFixed(2))
+            getSum()
         })
         $(".subtract").click(function () {
             // 减号对应的该商品的数量
             // console.log($(this).siblings("input").val());
             let n = $(this).siblings("input").val();
-            if (n == 1) {
-                return false;
+            if (n <= 2) {
+                n--;
+                $(this).siblings("input").val(n)
+                $(this).attr("disabled", true)
             } else {
                 n--;
                 $(this).siblings("input").val(n)
+                $(this).siblings(".add").attr("disabled", false)
             }
             // 商品总计价格变化
             console.log($(this).parent().siblings(".total").html());
@@ -128,7 +142,59 @@
             console.log(price);
             // toFixed(2)保留两位小数
             $(this).parent().siblings(".total").html((price * n).toFixed(2))
+            getSum()
         })
+        // 商品件数更改
+        $(".num").change(function () {
+
+            // 当件数变化时，商品总价=件数*单价
+            // console.log($(this).parent().siblings(".total").html());
+
+            let price = $(this).parent().siblings(".price").text().substr(1);
+            // 当前商品数量
+            // console.log();
+            if ($(this).val() <= 1) {
+                $(this).val(1);
+                alert("商品数量不能小于1");
+                $(this).siblings(".subtract").attr("disabled", true)
+                $(this).siblings(".add").attr("disabled", false)
+                $(this).parent().siblings(".total").html((price * $(this).val()).toFixed(2))
+            } else if ($(this).val() >= 200) {
+                $(this).val(200);
+                $(this).parent().siblings(".total").html((price * $(this).val()).toFixed(2))
+                $(this).siblings(".add").attr("disabled", true)
+                $(this).siblings(".subtract").attr("disabled", false)
+                alert("商品数量不能大于200");
+            } else {
+                $(this).parent().siblings(".total").html((price * $(this).val()).toFixed(2))
+            }
+            getSum()
+        })
+        // 计算总件和总额
+
+        $(".num").each(function (i, els) {
+            getSum()
+            // console.log($(els).val())
+            if ($(els).val() == 1) {
+                $(this).siblings(".subtract").attr("disabled", true)
+            } else if ($(els).val() == 200) {
+                $(this).siblings(".add").attr("disabled", true)
+            }
+            // console.log(sum);
+        })
+        // 商品总价总件数显示
+        function getSum() {
+            let sum = 0;
+            let total = 0;
+            $(".total").each(function (i, els) {
+                total += parseInt($(els).text());
+            })
+            $(".num").each(function (i, els) {
+                sum += parseInt($(els).val());
+            })
+            $(".ttotal").html(sum);
+            $(".tprice").text(total.toFixed(2))
+        }
     })
 </script>
 
@@ -153,8 +219,8 @@
                     <td><input type="checkbox" name="" id="" class="select"></td>
                     <td>商品A</td>
                     <td class="price">￥10.00</td>
-                    <td><button class="subtract">-</button><input type="number" name="" id="" value="1"><button
-                            class="add">+</button>
+                    <td><button class="subtract">-</button><input type="number" name="" id="" value="1"
+                            class="num"><button class="add">+</button>
                     </td>
                     <td class="total">10.00</td>
                     <td>删除</td>
@@ -164,8 +230,8 @@
                     <td>商品B</td>
                     <td class="price">￥15.80</td>
                     <td>
-                        <button class="subtract">-</button><input type="number" name="" id="" value="1"><button
-                            class="add">+</button>
+                        <button class="subtract">-</button><input type="number" name="" id="" value="1"
+                            class="num"><button class="add">+</button>
                     </td>
                     <td class="total">15.00</td>
                     <td>删除</td>
@@ -174,18 +240,18 @@
                     <td><input type="checkbox" name="" id="" class="select"></td>
                     <td>商品C</td>
                     <td class="price">￥55.00</td>
-                    <td><button class="subtract">-</button><input type="number" name="" id="" value="1"><button
-                            class="add">+</button>
+                    <td><button class="subtract">-</button><input type="number" name="" id="" value="3"
+                            class="num"><button class="add">+</button>
                     </td>
-                    <td class="total">55.00</td>
+                    <td class="total">165.00</td>
                     <td>删除</td>
                 </tr>
                 <tr>
                     <th><input type="checkbox" name="" id="" class="selectAll"> 全选</th>
                     <th>删除选中商品</th>
                     <th>清理购物车</th>
-                    <th>已选择1件商品</th>
-                    <th>总价：</th>
+                    <th>已选择<span class="ttotal"></span>件商品</th>
+                    <th>总价：<span class="tprice"></span></th>
                     <th><button class="button">去结算</button></th>
                 </tr>
             </tbody>
