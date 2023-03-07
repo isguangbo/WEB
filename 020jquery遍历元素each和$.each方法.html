@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.3.min.js"></script>
+</head>
+<script>
+    $(function () {
+        // 第一个参数索引号，第二参数dom元素对象
+        let arr = ["red", "green", "blue"];
+        let sum = 0;
+        $("div").each(function (i, els) {
+            // 第一个参数索引号
+            console.log(i);
+            // 第二参数dom元素对象
+            console.log(els);
+            // dom元素不能使用jQuery方法
+            // els.css("color","red")  // Uncaught TypeError: els.css is not a function
+            $(els).css("color", arr[i]);
+            // 计算所有元素的值
+            sum += parseInt($(els).text());
+            console.log(sum);
+        })
+
+        // $.each()方法遍历元素，主要用于遍历数据，处理数据
+        $.each($("div"), function (i, ele) {
+            console.log(i);
+            console.log(ele);
+        })
+        $.each(arr, function (i, ele) {
+            console.log(i);
+            console.log(ele);
+        });
+        $.each({ name: "ss", age: 18 }, function (i, ele) {
+            // i是属性名
+            console.log(i);
+            // ele属性值
+            console.log(ele);
+        })
+    })
+
+</script>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</body>
+
+</html>
