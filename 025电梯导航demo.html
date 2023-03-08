@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.3.min.js"></script>
+    <style>
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+        }
+
+        input {
+            margin-top: 20px;
+            padding: 10px;
+            width: 200px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<script>
+    $(document).ready(function () {
+        // Elevator object
+        const Elevator = {
+            currentFloor: 1,
+            targetFloor: 1,
+            isMoving: false,
+
+            moveUp() {
+                this.currentFloor++;
+                this.updateStatus();
+            },
+
+            moveDown() {
+                this.currentFloor--;
+                this.updateStatus();
+            },
+
+            moveTo(floor) {
+                this.targetFloor = floor;
+                this.isMoving = true;
+
+                const elevator = this;
+                const timer = setInterval(function () {
+                    if (elevator.targetFloor > elevator.currentFloor) {
+                        elevator.moveUp();
+                    } else if (elevator.targetFloor < elevator.currentFloor) {
+                        elevator.moveDown();
+                    } else {
+                        elevator.isMoving = false;
+                        clearInterval(timer);
+                    }
+                }, 1000);
+            },
+
+            updateStatus() {
+                $('#status').val(`电梯目前在 ${this.currentFloor}.`);
+            }
+        };
+
+        // Attach event listeners to floor buttons
+        $('.floor-btn').click(function () {
+            const floor = $(this).data('floor');
+            if (floor != Elevator.currentFloor) {
+                Elevator.moveTo(floor);
+            }
+        });
+    });
+
+</script>
+
+<body>
+    <div>
+        <button class="floor-btn" data-floor="1">1</button>
+        <button class="floor-btn" data-floor="2">2</button>
+        <button class="floor-btn" data-floor="3">3</button>
+        <button class="floor-btn" data-floor="4">4</button>
+        <button class="floor-btn" data-floor="5">5</button>
+        <input id="status" type="text" readonly>
+    </div>
+
+
+</body>
+
+</html>
