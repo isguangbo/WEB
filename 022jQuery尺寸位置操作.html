@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <script src="jquery-3.6.3.min.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: blanchedalmond;
+            padding: 10px;
+            border: 2px solid red;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<script>
+$(function () {  
+    // width height 获取 设置元素宽高
+    console.log("width:",$("div").width());
+    // console.log($("div").height());
+    // 修改直接在括号里填写值
+    // console.log($("div").height(500));
+    // innerWidth包含元素的padding值 自身宽度
+    console.log("innerWidth:", $("div").innerWidth());
+    // outerWidth包含元素padding border 自身宽度
+    console.log("outerWidth:",$("div").outerHeight());
+    // outerWidth包含元素padding margin border 自身宽度
+    console.log("outerWidth:", $("div").outerHeight(true));
+
+})
+</script>
+<body>
+    <div></div>
+</body>
+</html>
