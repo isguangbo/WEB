@@ -47,9 +47,9 @@
             background-color: #f2f2f2;
         }
 
-        tr:hover {
+        /* tr:hover {
             background-color: #f5f5f5;
-        }
+        } */
 
         .button {
             background-color: rgb(212, 80, 77);
@@ -69,6 +69,10 @@
             width: 2rem;
             text-align: center;
         }
+
+        .selectBgc {
+            background-color: blanchedalmond;
+        }
     </style>
 </head>
 <script>
@@ -78,6 +82,13 @@
         $(".selectAll").change(function () {
             // console.log($(this).prop("checked"));
             $(".select,.selectAll").prop("checked", $(this).prop("checked"))
+            // 全选时添加背景色
+            if ($(this).prop("checked")) {
+                $("tbody tr").addClass("selectBgc")
+            } else {
+                // 取消全选时去除背景色
+                $("tbody tr").removeClass("selectBgc")
+            }
         });
         // 当小按钮全部选中时，全选按钮也要选中
         $(".select").change(function () {
@@ -87,10 +98,16 @@
             // console.log($(".select").length);
             // 如果商品选中的数量和商品数量相等全选按钮选中
             if ($(".select:checked").length === $(".select").length) {
-                $(".selectAll").prop("checked", true)
+                $(".selectAll").prop("checked", true);
                 // 否则不选中
             } else {
-                $(".selectAll").prop("checked", false)
+                $(".selectAll").prop("checked", false);
+            }
+            if ($(this).prop("checked")) {
+                $(this).parents("tr").addClass("selectBgc")
+            } else {
+                // 取消全选时去除背景色
+                $(this).parents("tr").removeClass("selectBgc")
             }
         });
         // 增减商品数量
@@ -116,10 +133,10 @@
             // 点击加号后的值自加修改value值
             $(this).siblings("input").val(n)
             // 商品总计价格变化
-            console.log($(this).parent().siblings(".total").html());
+            // console.log($(this).parent().siblings(".total").html());
             // substr()截取字符串 里面跟两个参数，第一个参数从第几个截取  第二个参数截取多少个，不写默认到最后一个
             let price = $(this).parent().siblings(".price").text().substr(1);
-            console.log(price);
+            // console.log(price);
             $(this).parent().siblings(".total").html((price * n).toFixed(2))
             getSum()
         })
@@ -137,9 +154,9 @@
                 $(this).siblings(".add").attr("disabled", false)
             }
             // 商品总计价格变化
-            console.log($(this).parent().siblings(".total").html());
+            // console.log($(this).parent().siblings(".total").html());
             let price = $(this).parent().siblings(".price").text().substr(1);
-            console.log(price);
+            // console.log(price);
             // toFixed(2)保留两位小数
             $(this).parent().siblings(".total").html((price * n).toFixed(2))
             getSum()
@@ -182,7 +199,7 @@
             }
             // console.log(sum);
         })
-        // 商品总价总件数显示
+        // 商品总价总件数计算显示
         function getSum() {
             let sum = 0;
             let total = 0;
@@ -195,6 +212,23 @@
             $(".ttotal").html(sum);
             $(".tprice").text(total.toFixed(2))
         }
+        // 删除商品
+        $(".del a").click(function () {
+            // 删除当前行
+            $(this).parents("tr").remove()
+            getSum()
+        })
+        // 删除选中商品
+        $(".selectC").click(function () {
+            $(".select:checked").parents("tr").remove()
+            getSum()
+            // console.log($(".select:checked"));
+        })
+        // 清空购物车
+        $(".clearAll").click(function () {
+            $("tbody tr").remove()
+            getSum()
+        })
     })
 </script>
 
@@ -223,7 +257,7 @@
                             class="num"><button class="add">+</button>
                     </td>
                     <td class="total">10.00</td>
-                    <td>删除</td>
+                    <td class="del"><a href="javascript:;">删除</td>
                 </tr>
                 <tr>
                     <td><input type="checkbox" name="" id="" class="select"></td>
@@ -234,7 +268,7 @@
                             class="num"><button class="add">+</button>
                     </td>
                     <td class="total">15.00</td>
-                    <td>删除</td>
+                    <td class="del"><a href="javascript:;">删除</td>
                 </tr>
                 <tr>
                     <td><input type="checkbox" name="" id="" class="select"></td>
@@ -244,16 +278,16 @@
                             class="num"><button class="add">+</button>
                     </td>
                     <td class="total">165.00</td>
-                    <td>删除</td>
+                    <td class="del"><a href="javascript:;">删除</td>
                 </tr>
-                <tr>
-                    <th><input type="checkbox" name="" id="" class="selectAll"> 全选</th>
-                    <th>删除选中商品</th>
-                    <th>清理购物车</th>
-                    <th>已选择<span class="ttotal"></span>件商品</th>
-                    <th>总价：<span class="tprice"></span></th>
-                    <th><button class="button">去结算</button></th>
-                </tr>
+            <tfoot>
+                <th><input type="checkbox" name="" id="" class="selectAll"> 全选</th>
+                <th class="selectC"><a href="javascript:;">删除选中商品</a></th>
+                <th class="clearAll"><a href="javascript:;">清理购物车</a></th>
+                <th>已选择<span class="ttotal"></span>件商品</th>
+                <th>总价：<span class="tprice"></span></th>
+                <th><button class="button">去结算</button></th>
+            </tfoot>
             </tbody>
         </table>
         <br>
