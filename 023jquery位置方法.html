@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <script src="jquery-3.6.3.min.js"></script>
+    <style>
+        .father {
+            position: absolute;
+            margin: 20px;
+            width: 500px;
+            height: 500px;
+            background-color: #ccc;
+        }
+
+        .son {
+            position: relative;
+            top: 10px;
+            left: 10px;
+            width: 200px;
+            height: 200px;
+            background-color: #aaa;
+        }
+    </style>
+</head>
+<script>
+    $(function () {
+        // 修改距离文档位置的偏移
+        // $(".son").offset({
+        //     top:30,
+        //     left:30
+        // });
+        // 获取距离文档位置的偏移
+        console.log($(".son").offset().top);
+
+        // 获取带有定位的偏移坐标
+        // 这个方法只能获取不能设置偏移
+        console.log($(".son").position());
+    })
+</script>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+</body>
+
+</html>
