@@ -6,83 +6,115 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/normalize.css">
     <script src="jquery-3.6.3.min.js"></script>
     <style>
-        button {
-            padding: 10px 20px;
-            margin: 10px;
+        .w {
+            margin: 0 auto;
+            width: 1280px;
         }
 
-        input {
-            margin-top: 20px;
-            padding: 10px;
-            width: 200px;
-            font-size: 16px;
+        .zero,
+        .one,
+        .two,
+        .three,
+        .four {
+            box-sizing: border-box;
+            height: 400px;
+            border-bottom: 1px solid red;
+        }
+
+        .five {
+            height: 1200px;
+            background-color: sandybrown;
+        }
+
+        .navigationBar {
+            display: none;
+            position: fixed;
+            right: 10px;
+            top: 280px;
+            width: 50px;
+            height: 300px;
+            background-color: #ddd;
+            border-radius: 6px;
+        }
+
+        .navigationBar li a {
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-bottom: 1px solid rgb(219, 90, 176);
+            color: rgb(214, 28, 90);
+        }
+
+        .navigationBar li:last-child a {
+            border-bottom: none;
+        }
+
+        .bgc {
+            background-color: rgb(156, 131, 131);
+            border: 1px solid red;
+            border-radius: 6px;
         }
     </style>
 </head>
 <script>
-    $(document).ready(function () {
-        // Elevator object
-        const Elevator = {
-            currentFloor: 1,
-            targetFloor: 1,
-            isMoving: false,
-
-            moveUp() {
-                this.currentFloor++;
-                this.updateStatus();
-            },
-
-            moveDown() {
-                this.currentFloor--;
-                this.updateStatus();
-            },
-
-            moveTo(floor) {
-                this.targetFloor = floor;
-                this.isMoving = true;
-
-                const elevator = this;
-                const timer = setInterval(function () {
-                    if (elevator.targetFloor > elevator.currentFloor) {
-                        elevator.moveUp();
-                    } else if (elevator.targetFloor < elevator.currentFloor) {
-                        elevator.moveDown();
-                    } else {
-                        elevator.isMoving = false;
-                        clearInterval(timer);
+    $(function () {
+        let flag = true;
+        // 屏幕滚动到第二个div时显示导航栏
+        $(window).scroll(function () {
+            if ($(document).scrollTop() >= $(".one").offset().top) {
+                $(".navigationBar").fadeIn();
+                // 否则不显示
+            } else $(".navigationBar").fadeOut();
+            // 滚动到某个区域，电梯栏相应变化
+            // 如果当前被卷去头部大于等于模块的offsetTop值找到对应电梯索引号
+            if (flag) {
+                $(".w").each(function (i, ele) {
+                    if ($(document).scrollTop() >= $(ele).offset().top) {
+                        console.log(i);
+                        $(".navigationBar li").eq(i).addClass("bgc").siblings().removeClass()
                     }
-                }, 1000);
-            },
-
-            updateStatus() {
-                $('#status').val(`电梯目前在 ${this.currentFloor}.`);
+                })
             }
-        };
 
-        // Attach event listeners to floor buttons
-        $('.floor-btn').click(function () {
-            const floor = $(this).data('floor');
-            if (floor != Elevator.currentFloor) {
-                Elevator.moveTo(floor);
-            }
         });
-    });
-
+        // 点击导航序号时，跳转到对应的区域
+        $(".navigationBar li").click(function () {
+            flag = false;
+            let index = $(this).index();
+            $("html").stop().animate({
+                scrollTop: $(".w").eq($(this).index()).offset().top
+            }, function () {
+                flag = true;
+            });
+            // 点击的时候添加背景颜色
+            $(this).addClass("bgc").siblings().removeClass()
+        })
+    })
 </script>
 
 <body>
-    <div>
-        <button class="floor-btn" data-floor="1">1</button>
-        <button class="floor-btn" data-floor="2">2</button>
-        <button class="floor-btn" data-floor="3">3</button>
-        <button class="floor-btn" data-floor="4">4</button>
-        <button class="floor-btn" data-floor="5">5</button>
-        <input id="status" type="text" readonly>
+    <div class="w zero">0</div>
+    <div class="w one">1</div>
+    <div class="w two">2</div>
+    <div class="w three">3</div>
+    <div class="w four">4</div>
+    <div class="w five">5</div>
+    <div class="navigationBar">
+        <ul>
+            <li><a href="javascript:;">1</a></li>
+            <li><a href="javascript:;">2</a></li>
+            <li><a href="javascript:;">3</a></li>
+            <li><a href="javascript:;">4</a></li>
+            <li><a href="javascript:;">5</a></li>
+        </ul>
     </div>
-
-
 </body>
 
 </html>
