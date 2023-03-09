@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>deme</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <script src="jquery-3.6.3.min.js"></script>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: palevioletred;
+        }
+        .current{
+            background-color: powderblue;
+        }
+    </style>
+</head>
+<script>
+    $(function () {
+        // 单个事件注册
+        // $("div").click(function () {
+        //     $(this).css("backgroundColor","red")
+        // });
+        // $("div").mouseenter(function () {
+        //     $(this).css("backgroundColor", "purple")
+        // });
+
+        // on()方法在匹配元素上绑定一个或多个事件处理程序
+        // 语法：
+        // Element.on(events,[selector],fn)
+        // 1.events：一个或多个用空格分隔的事件类型，如click或keydown
+        // 2.selector:元素的子元素选择器
+        // 3.fn：回调函数 即绑定在元素身上的侦听函数
+        // $("div").on({
+        //     mouseenter: function () {
+        //         $(this).css("backgroundColor", "purple");
+        //     }, click: function () {
+        //         $(this).css("backgroundColor", "red");
+        //     }, mouseleave: function () {
+        //         $(this).css("backgroundColor", "black");
+        //     }
+        // })；
+        // 动态添加类
+        $("div").on("mouseenter mouseleave",function () {
+            $(this).toggleClass("current");
+        })
+    });
+</script>
+
+<body>
+    <div></div>
+</body>
+
+</html>
