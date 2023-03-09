@@ -209,8 +209,8 @@
             $(".num").each(function (i, els) {
                 sum += parseInt($(els).val());
             })
-            $(".ttotal").html(sum);
-            $(".tprice").text(total.toFixed(2))
+            $(".tTotal").html(sum);
+            $(".tPrice").text(total.toFixed(2))
         }
         // 删除商品
         $(".del a").click(function () {
@@ -284,8 +284,8 @@
                 <th><input type="checkbox" name="" id="" class="selectAll"> 全选</th>
                 <th class="selectC"><a href="javascript:;">删除选中商品</a></th>
                 <th class="clearAll"><a href="javascript:;">清理购物车</a></th>
-                <th>已选择<span class="ttotal"></span>件商品</th>
-                <th>总价：<span class="tprice"></span></th>
+                <th>已选择<span class="tTotal"></span>件商品</th>
+                <th>总价：<span class="tPrice"></span></th>
                 <th><button class="button">去结算</button></th>
             </tfoot>
             </tbody>
