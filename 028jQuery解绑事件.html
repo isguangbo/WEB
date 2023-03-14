@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>解绑事件</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <script src="jquery-3.6.3.min.js"></script>
+    <style>
+        
+    </style>
+</head>
+<script>
+    $(function () {
+        // $("ul").on("click mouseenter","li",function () {
+        //     alert(22);
+        // });
+        // 解除mouseenter 
+        // $("ul").off("mouseenter")
+        // 解除所有事件
+        // $("ul").off()
+        // 解除事件委托
+        // $("ul").off("mouseenter","li");
+        // 所有的事件只想触发一次用one   和on写法一致
+        $("ul").one("mouseenter","li",function () {
+            alert(11)
+        })
+    });
+</script>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</body>
+
+</html>
